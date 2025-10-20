@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Validasi Form</title>
+  <script>
+    function validasi() {
+      let nama = document.forms["myForm"]["nama"].value;
+      let email = document.forms["myForm"]["email"].value;
+
+      if (nama == "" || email == "") {
+        alert("Nama dan email harus diisi!");
+        return false;
+      } else {
+        alert("Data berhasil dikirim!");
+        return true;
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2>Form Validasi</h2>
+  <form name="myForm" onsubmit="return validasi()">
+    Nama: <input type="text" name="nama"><br><br>
+    Email: <input type="email" name="email"><br><br>
+    <input type="submit" value="Kirim">
+  </form>
+</body>
+</html>

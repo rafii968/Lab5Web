@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Validasi Form Modern</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      width: 320px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      border-color: #74ebd5;
+      outline: none;
+    }
+
+    .error {
+      border-color: #ff4d4d;
+    }
+
+    .message {
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: #ff4d4d;
+      display: none;
+    }
+
+    button {
+      width: 100%;
+      background-color: #74ebd5;
+      border: none;
+      color: #333;
+      font-size: 16px;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #67d0c1;
+    }
+
+    .success {
+      color: green;
+      text-align: center;
+      margin-top: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Form Validasi</h2>
+
+    <form id="myForm">
+      <label>Nama:</label>
+      <input type="text" id="nama" placeholder="Masukkan nama">
+      <div id="namaError" class="message">Nama wajib diisi!</div>
+
+      <label>Email:</label>
+      <input type="email" id="email" placeholder="Masukkan email">
+      <div id="emailError" class="message">Email wajib diisi!</div>
+
+      <button type="submit">Kirim</button>
+      <div id="successMsg" class="success">Data berhasil dikirim ✅</div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("myForm");
+    const nama = document.getElementById("nama");
+    const email = document.getElementById("email");
+    const namaError = document.getElementById("namaError");
+    const emailError = document.getElementById("emailError");
+    const successMsg = document.getElementById("successMsg");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault(); // mencegah reload halaman
+      let valid = true;
+
+      // reset tampilan error
+      nama.classList.remove("error");
+      email.classList.remove("error");
+      namaError.style.display = "none";
+      emailError.style.display = "none";
+      successMsg.style.display = "none";
+
+      // validasi nama
+      if (nama.value.trim() === "") {
+        nama.classList.add("error");
+        namaError.style.display = "block";
+        valid = false;
+      }
+
+      // validasi email
+      if (email.value.trim() === "") {
+        email.classList.add("error");
+        emailError.style.display = "block";
+        valid = false;
+      }
+
+      // jika semua valid
+      if (valid) {
+        successMsg.style.display = "block";
+        form.reset();
+      }
+    });
+  </script>
+</body>
+</html>
